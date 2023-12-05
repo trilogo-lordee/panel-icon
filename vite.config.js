@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import generator from "../generator/index.js";
+import generator from "generator";
 
 export default defineConfig({
     plugins: [

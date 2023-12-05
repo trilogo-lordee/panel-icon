@@ -4,7 +4,6 @@
   "description": "",
   "author": "",
   "license": "ISC",
-
   "type": "module",
   "files": ["dist"],
   "main": "./dist/panel-icon.umd.cjs",
@@ -23,6 +22,7 @@
   "devDependencies": {
     "glob": "^10.3.10",
     "@vitejs/plugin-vue": "^4.5.0",
+    "generator": "git+ssh://git@github.com/trilogo-lordee/generator.git",
     "vite": "^5.0.2"
   }
 }
