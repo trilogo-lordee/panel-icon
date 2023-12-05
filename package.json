@@ -2,6 +2,7 @@
   "name": "panel-icon",
   "version": "1.0.0",
   "description": "",
+  "repository": "git+ssh://git@github.com/trilogo-lordee/panel-icon.git",
   "author": "",
   "license": "ISC",
   "type": "module",
