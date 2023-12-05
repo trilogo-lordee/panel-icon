@@ -8,10 +8,10 @@
   "type": "module",
   "files": ["dist"],
   "main": "./dist/panel-icon.umd.cjs",
-  "module": "./lib/components.js",
+  "module": "./dist/panel-icon.js",
   "exports": {
     ".": {
-      "import": "./lib/components.js",
+      "import": "./dist/panel-icon.js",
       "require": "./dist/panel-icon.umd.js"
     }
   },
