@@ -1,18 +1,22 @@
 {
   "name": "panel-icon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "repository": "git+ssh://git@github.com/trilogo-lordee/panel-icon.git",
   "author": "",
   "license": "ISC",
   "type": "module",
-  "files": ["dist"],
-  "main": "./dist/panel-icon.umd.cjs",
+  "main": "./dist/panel-icon.cjs",
   "module": "./dist/panel-icon.js",
+  "files": ["dist"],
   "exports": {
     ".": {
       "import": "./dist/panel-icon.js",
-      "require": "./dist/panel-icon.umd.js"
+      "require": "./dist/panel-icon.cjs"
+    },
+    "./install": {
+      "import": "./dist/install.js",
+      "require": "./dist/install.cjs"
     }
   },
   "scripts": {
@@ -21,9 +25,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "glob": "^10.3.10",
     "@vitejs/plugin-vue": "^4.5.0",
-    "generator": "git+ssh://git@github.com/trilogo-lordee/generator.git",
+    "generator": "file:/home/lordee/post/strahovka/packages/generator",
+    "glob": "^10.3.10",
     "vite": "^5.0.2"
   }
 }

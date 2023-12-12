@@ -1,38 +1,42 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
+import {resolve} from 'path'
+import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
-import generator from "generator";
 
+import VueGenerator from "generator";
+
+const name = 'panel-icon';
 export default defineConfig({
     plugins: [
         vue(),
-        generator({
-            src: './src/icon/',
-            dist: './lib/components.js',
+        VueGenerator.generate({
+            src: './src',
+            dist: `./src/${name}.js`,
             resolve: [
-                {entry: './src/icon', prefix: 'Icon'}
+                {
+                    entry: './src/icon', prefix: 'PanelIcon'
+                },
             ],
-        }),
+        })
     ],
     build: {
+        manifest: true,
+        minify: false,
+        cssCodeSplit: true,
         lib: {
-            entry: resolve(__dirname, 'lib/components.js'),
-            name: 'panel-icon',
-            // the proper extensions will be added
-            fileName: 'panel-icon'
+            entry: {
+                [name]: resolve(__dirname, `./src/${name}.js`),
+                install: resolve(__dirname, `./src/install.js`),
+            },
+            name: name,
         },
         rollupOptions: {
-            // make sure to externalize deps that shouldn't be bundled
-            // into your library
-            external: ['vue'],
+            external: ['vue', 'lodash'],
             output: {
-                // Provide global variables to use in the UMD build
-                // for externalized deps
                 globals: {
-                    vue: 'Vue'
-                }
-            }
-        }
+                    'vue': 'Vue',
+                },
+            },
+        },
     },
     alias: {
         '@/': resolve(__dirname, './src'),
