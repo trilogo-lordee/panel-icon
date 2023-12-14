@@ -13,10 +13,6 @@
     ".": {
       "import": "./dist/panel-icon.js",
       "require": "./dist/panel-icon.cjs"
-    },
-    "./install": {
-      "import": "./dist/install.js",
-      "require": "./dist/install.cjs"
     }
   },
   "scripts": {
@@ -27,7 +23,6 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",
     "generator": "file:/home/lordee/post/strahovka/packages/generator",
-    "glob": "^10.3.10",
     "vite": "^5.0.2"
   }
 }

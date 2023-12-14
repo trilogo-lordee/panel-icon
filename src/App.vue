@@ -76,7 +76,7 @@
 </style>
 
 <script>
-import * as components from '../lib/components'
+import * as components from './components.js'
 
 export default {
     name: "App",

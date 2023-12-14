@@ -1,5 +1,5 @@
-import {resolve} from 'path'
-import {defineConfig} from 'vite'
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 import VueGenerator from "generator";
@@ -10,7 +10,7 @@ export default defineConfig({
         vue(),
         VueGenerator.generate({
             src: './src',
-            dist: `./src/${name}.js`,
+            dist: `./src/components.js`,
             resolve: [
                 {
                     entry: './src/icon', prefix: 'PanelIcon'
@@ -19,26 +19,33 @@ export default defineConfig({
         })
     ],
     build: {
+        sourcemap: true,
         manifest: true,
         minify: false,
         cssCodeSplit: true,
         lib: {
-            entry: {
-                [name]: resolve(__dirname, `./src/${name}.js`),
-                install: resolve(__dirname, `./src/install.js`),
-            },
+            entry: resolve(__dirname, `./src/index.js`),
             name: name,
+            formats: ['es', 'cjs'],
         },
         rollupOptions: {
-            external: ['vue', 'lodash'],
+            external: ['vue', 'axios', '@inertiajs/vue3', '@headlessui/vue', 'panel-icon', 'panel', 'panel-interface'],
             output: {
+                exports: 'named',
+                extend: true,
                 globals: {
                     'vue': 'Vue',
+                    'axios': 'axios',
+                    '@inertiajs/vue3': '@inertiajs/vue3',
+                    '@headlessui/vue': '@headlessui/vue',
+                    'panel-icon': 'panel-icon',
+                    'panel': 'panel',
+                    'panel-interface': 'panel-interface',
                 },
             },
         },
     },
     alias: {
-        '@/': resolve(__dirname, './src'),
+        '@': resolve(__dirname, './src'),
     }
 })
