@@ -1,6 +1,6 @@
 {
   "src/index.js": {
-    "file": "panel-icon.cjs",
+    "file": "panel-icon.esm.js",
     "isEntry": true,
     "src": "src/index.js"
   }

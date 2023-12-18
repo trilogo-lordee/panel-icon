@@ -1,3 +1,3 @@
-import module from './install.js'
-export {module as default}
+import install from './install.js'
+export {install}
 export * from './components.js'

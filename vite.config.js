@@ -4,11 +4,12 @@ import vue from '@vitejs/plugin-vue'
 
 import VueGenerator from "generator";
 
-const name = 'panel-icon';
+import module from './package.json';
+
 export default defineConfig({
     plugins: [
         vue(),
-        VueGenerator.generate({
+        VueGenerator.generator({
             src: './src',
             dist: `./src/components.js`,
             resolve: [
@@ -19,33 +20,29 @@ export default defineConfig({
         })
     ],
     build: {
+        target: 'es2020',
         sourcemap: true,
         manifest: true,
-        minify: false,
+        minify: true,
         cssCodeSplit: true,
         lib: {
-            entry: resolve(__dirname, `./src/index.js`),
-            name: name,
-            formats: ['es', 'cjs'],
+            entry: resolve(__dirname, './src/index.js'),
+            name: 'panel-icon',
+            formats: ['esm'],
+            fileName: (format, entryName) => (entryName === 'index') ? `panel-icon.${format}.js` : `${entryName}.${format}.js`,
         },
         rollupOptions: {
-            external: ['vue', 'axios', '@inertiajs/vue3', '@headlessui/vue', 'panel-icon', 'panel', 'panel-interface'],
+            input: resolve(__dirname, `./src/index.js`),
+            external: [
+                ...Object.keys(module.peerDependencies ?? {}), ...Object.keys(module.devDependencies ?? {}), 'vue',
+            ],
             output: {
-                exports: 'named',
-                extend: true,
-                globals: {
-                    'vue': 'Vue',
-                    'axios': 'axios',
-                    '@inertiajs/vue3': '@inertiajs/vue3',
-                    '@headlessui/vue': '@headlessui/vue',
-                    'panel-icon': 'panel-icon',
-                    'panel': 'panel',
-                    'panel-interface': 'panel-interface',
-                },
+                generatedCode: 'es2015',
+                interop: 'esModule',
             },
         },
     },
     alias: {
-        '@': resolve(__dirname, './src'),
+        '@/': resolve(__dirname, './src'),
     }
 })

@@ -6,13 +6,15 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "main": "./dist/panel-icon.cjs",
-  "module": "./dist/panel-icon.js",
-  "files": ["dist"],
+  "main": "dist/panel-icon.esm.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "exports": {
     ".": {
-      "import": "./dist/panel-icon.js",
-      "require": "./dist/panel-icon.cjs"
+      "import": "./dist/panel-icon.esm.js",
+      "default": "./dist/panel-icon.esm.js"
     }
   },
   "scripts": {
@@ -22,7 +24,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",
-    "generator": "file:/home/lordee/post/strahovka/packages/generator",
+    "generator": "git@github.com:trilogo-lordee/generator",
     "vite": "^5.0.2"
   }
 }
